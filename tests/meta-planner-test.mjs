@@ -1,0 +1,11 @@
+import {FEATURES,SYNERGIES} from '../js/features.js';
+import {analyzeProject} from '../js/modules/discovery.js';
+import {runDeterministicMetaPlanner} from '../js/modules/metaplanner.js';
+const names=['WebLLM','WebGPU','WebRTC DataChannels','CRDTs','Meta-prompt chain'];
+const selected=FEATURES.filter(f=>names.includes(f.name));
+const discovery=analyzeProject({brief:'advanced cross-domain multiplayer visual collaboration foundry with local AI and deterministic prompt planning',features:FEATURES,synergies:SYNERGIES,limit:24,strategy:'precise'});
+const result=runDeterministicMetaPlanner({mode:'three',basePrompt:'Build a modular collaborative foundry.',instruction:'No AI dependency.',selectedFeatures:selected,allFeatures:FEATURES,synergies:SYNERGIES,discovery});
+if(!result.text.includes('DETERMINISTIC META-PLANNER'))throw new Error('missing planner header');
+if(!result.text.includes('No neural model required'))throw new Error('missing no-model method');
+if(!result.text.includes('REVISED META-PROMPT PATCH'))throw new Error('missing prompt patch');
+console.log('meta-planner-test PASS', {features:FEATURES.length,gaps:result.gaps.length,synergies:result.synergies.length,risks:result.risks.length});
